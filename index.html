@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form Page</title>
+  <link rel="stylesheet" type="text/css" href="index.css">
+  
+</head>
+<body>
+  <div class="container">
+    <h1>Form Page</h1>
+    <form>
+      <label for="input1">Input 1:</label>
+      <input type="text" id="input1" name="input1"><br>
+
+      <label for="input2">Input 2:</label>
+      <input type="text" id="input2" name="input2"><br>
+
+      <!-- Rest of the inputs and dropdowns -->
+
+      <input type="button" value="Generate PDF" onclick="generatePDF()">
+    </form>
+  </div>
+  <script src="jspdf.umd.min.js"></script>
+  <script>
+    function generatePDF() {
+      var doc = new jsPDF();
+      var input1Value = document.getElementById("input1").value;
+      var input2Value = document.getElementById("input2").value;
+      // Add more variables for other inputs
+
+      doc.text(`Input 1: ${input1Value}`, 10, 10);
+      doc.text(`Input 2: ${input2Value}`, 10, 20);
+      // Add more doc.text() statements for other inputs
+
+      doc.save("form_data.pdf");
+    }
+  </script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form Page</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script src="./index.js">
+</script>
+<body>
+    <div class="container">
+        <header>
+            <h2>FICHE DE CHARGEMENT AUTOCLAVE</h2>
+        </header>
+        <form>
+            <label for="input1">N° SEMAINE :</label>
+            <input type="text" id="input1" name="input1"><br>
+
+            <label for="dropdown1">AUTOCLAVE</label>
+            <select id="dropdown1" name="dropdown1">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+            </select><br>
+
+            <label for="input3">N° de Cycle :</label>
+            <input type="text" id="input3" name="input3"><br>
+            <fieldset>
+                <legend>CHARGEMENT</legend>
+                <label for="input4">Matricule(s):</label>
+                <input type="text" id="input4" name="input4"><br>
+
+                <label for="input5">opérateur(s):</label>
+                <input type="text" id="input5" name="input5"><br>
+
+                <label for="input6">N° COURBE :</label>
+                <input type="text" id="input6" name="input6"><br>
+
+                <label for="input7">Date:</label>
+                <input type="text" id="input7" name="input7"><br>
+
+                <label for="input8">Heure :</label>
+                <input type="text" id="input8" name="input8"><br>
+            </fieldset>
+            <label for="dropdown1">Désignation</label>
+            <select id="dropdown1" name="dropdown1">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+            </select>
+
+            <label for="input7">N° OF :</label>
+            <input type="text" id="input8" name="input8"><br>
+
+            <label for="input9">N° PV :</label>
+            <input type="text" id="input8" name="input8"><br>
+            <label for="input10"> N° TC :</label>
+            <input type="text" id="input8" name="input8"><br>
+            <fieldset>
+                <legend>DECHARGEMENT</legend>
+                <label for="input4">Matricule(s):</label>
+                <input type="text" id="input4" name="input4"><br>
+
+                <label for="input5">opérateur(s):</label>
+                <input type="text" id="input5" name="input5"><br>
+
+                <label for="input7">Date:</label>
+                <input type="text" id="input7" name="input7"><br>
+
+                <label for="input8">Heure :</label>
+                <input type="text" id="input8" name="input8"><br>
+            </fieldset>
+            <br>
+            <input type="submit" onclick="Submit()" value="Submit">
+        </form>
+    </div>
+    
+</body>
+
+</html> -->
