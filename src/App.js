@@ -3,7 +3,7 @@ import "./App.css"
 
 
 const App = () => {
-  const [inputValues, setInputValues] = useState({
+  const [inputValues, SetInputValues] = useState({
     SEMAINE: '',
     AUTOCLAVE: '',
     Cycle: '',
@@ -21,10 +21,11 @@ const App = () => {
     de_Date: '',
     de_Heure: '',
   });
+  const [inputValues2, SetInputValues2] = useState('');
 
   const handleInputChange = (e) => {
     if (e.key === 'Enter') {
-      console.log(`Enter key pressed ${setInputValues.value}`);
+      console.log(`Enter key pressed ${SetInputValues.value}`);
     }
   };
 
@@ -42,7 +43,7 @@ const App = () => {
 
   const handleDropdownChange = (e) => {
     const { name, value } = e.target;
-    setInputValues((prevValues) => ({
+    SetInputValues((prevValues) => ({
       ...prevValues,
       [name]: value,
     }));
@@ -191,8 +192,8 @@ const App = () => {
                 type="text"
                 id="input1"
                 name="input1"
-                value={inputValues.of}
-                onChange={handleInputChange}
+                value={inputValues2.of}
+                onChange={() => SetInputValues2}
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
