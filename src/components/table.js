@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const Table = () => {
+const Table = ({ inputValues2 }) => {
+    console.log('you are in table');
+    console.log(inputValues2);
     return (
         <>
             <div className='border border-black w-full m-2'>
@@ -22,22 +24,23 @@ const Table = () => {
             </div>
 
             <div className='border border-black w-full m-2'>
-                {/* <h1 className=' m-2 bg-gray-100 w-full text-center' ></h1> */}
+            {inputValues2.length > 1 && (
                 <div className='flex justify-center'>
                     <div className="mb-4 m-auto">
-                        example
+                    exampl
                     </div>
                     <div className="mb-4 m-auto">
-                        example
+                    exampl
                     </div>
                     <div className="mb-4 m-auto">
-
-                        example
+                    example
                     </div>
                     <div className="mb-4 m-auto">
-                        example
+                    example
                     </div>
                 </div>
+            )}
+
             </div>
         </>
     );

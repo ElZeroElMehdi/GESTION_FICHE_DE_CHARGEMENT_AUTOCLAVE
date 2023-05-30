@@ -1,59 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./App.css"
 import Table from './components/table';
 
 const handlePrint = () => {
   //hide all inputs
+  console.log('print');
   window.print();
 };
 
 const App = () => {
   const [inputValues2, SetinputValues2] = useState({
-    id_semaine: '',
-    AUTOCLAVE: '',
-    Cycle: '',
-    Matricule: '',
-    operateur: '',
-    Date: '',
-    Heure: '',
-    COURBE: '',
     Designation: '',
     of: '',
     pv: '',
     tc: '',
-    de_Matricule: '',
-    de_operateur: '',
-    de_Date: '',
-    de_Heure: '',
   });
   const [inputValues22, SetinputValues22] = useState('');
-
-  // const handleInputChange = (e) => {
-  //   if (e.key === 'Enter') {
-  //     console.log(`Enter key pressed ${SetinputValues2.value}`);
-  //   }
-  // };
-
-
-
-  // const handleInputBlur = (e) => {
-  //   handleInputChange(e);
-  // };
-
-  // const handleInputKeyDown = (e) => {
-  //   if (e.key === 'Enter') {
-  //     handleInputChange(e);
-  //   }
-  // };
-
-  const handleDropdownChange = (e) => {
-    const { name, value } = e.target;
-    SetinputValues2((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
+  const array = [{}];
+  var add = () => {
+    array.push(inputValues2);
+    SetinputValues2({
+      Designation: '',
+      of: '',
+      pv: '',
+      tc: '',
+    });
+    console.log(array);
   };
-
   return (
     <>
       <div className="p-4">
@@ -74,7 +47,7 @@ const App = () => {
                 type="text"
                 id="id_semaine"
                 name="id_semaine"
-                value={inputValues2.id_semaine}
+                value={inputValues22.id_semaine}
                 onChange={() => SetinputValues22}
                 className="border border-gray-300 p-2 rounded"
               />
@@ -89,7 +62,7 @@ const App = () => {
                 type="text"
                 id="id_autoclave"
                 name="id_autoclave"
-                value={inputValues2.AUTOCLAVE}
+                value={inputValues22.AUTOCLAVE}
                 onChange={() => SetinputValues22}
                 className="border border-gray-300 p-2 rounded"
               />
@@ -102,7 +75,7 @@ const App = () => {
                 type="text"
                 id="id_n_cycle"
                 name="id_n_cycle"
-                value={inputValues2.Cycle}
+                value={inputValues22.Cycle}
                 onChange={() => SetinputValues22}
                 className="border border-gray-300 p-2 rounded"
               />
@@ -121,7 +94,7 @@ const App = () => {
                 type="text"
                 id="id_matricule_1"
                 name="id_matricule_1"
-                value={inputValues2.Matricule}
+                value={inputValues22.Matricule}
                 onChange={() => SetinputValues22}
                 className="border border-gray-300 p-2 rounded"
               />
@@ -134,7 +107,7 @@ const App = () => {
                 type="text"
                 id="id_date_1"
                 name="id_date_1"
-                value={inputValues2.Date}
+                value={inputValues22.Date}
                 onChange={() => SetinputValues22}
                 className="border border-gray-300 p-2 rounded"
               />
@@ -148,7 +121,7 @@ const App = () => {
                 type="text"
                 id="id_heure_1"
                 name="id_heure_1"
-                value={inputValues2.Heure}
+                value={inputValues22.Heure}
                 onChange={() => SetinputValues22}
                 className="border border-gray-300 p-2 rounded"
               />
@@ -159,7 +132,8 @@ const App = () => {
         
 
         {/* ***************** */}
-        <Table/>
+        {console.log("i will call to table with:", array.length)}
+        <Table inputValues2={array}/>
         {/* ***************** */}
 
         
@@ -173,7 +147,7 @@ const App = () => {
                 id="id_designation"
                 name="id_designation"
                 value={inputValues2.Designation}
-                onChange={handleDropdownChange}
+                onChange={(e) => SetinputValues2({...inputValues2,Designation: e.target.value,})}
                 className="border border-gray-300 p-2 rounded"
               >
                 <option value="">Désignation </option>
@@ -190,8 +164,8 @@ const App = () => {
                 type="text"
                 id="id_n_of"
                 name="id_n_of"
-                value={inputValues22.of}
-                onChange={() => SetinputValues22}
+                value={inputValues2.of}
+                onChange={(e) => SetinputValues2({...inputValues2,of: e.target.value,})}
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
@@ -203,8 +177,8 @@ const App = () => {
                 type="text"
                 id="id_n_pv"
                 name="id_n_pv"
-                value={inputValues22.pv}
-                onChange={() => SetinputValues22}
+                value={inputValues2.pv}
+                onChange={(e) => SetinputValues2({...inputValues2,pv: e.target.value,})}
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
@@ -216,13 +190,13 @@ const App = () => {
                 type="text"
                 id="id_n_tc"
                 name="id_n_tc"
-                value={inputValues22.tc}
-                onChange={() => SetinputValues22}
+                value={inputValues2.tc}
+                onChange={(e) => SetinputValues2({...inputValues2,tc: e.target.value,})}
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
             <div className="mb-4 m-2">
-              <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center">
+              <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center" onClick={add}>
                 <span className="mr-2">+</span>
                 Add Row
               </button>
@@ -242,7 +216,7 @@ const App = () => {
                 type="text"
                 id="id_matricule_2"
                 name="id_matricule_2"
-                value={inputValues2.de_Matricule}
+                value={inputValues22.de_Matricule}
                 onChange={() => SetinputValues2}
                 className="border border-gray-300 p-2 rounded"
               />
@@ -255,7 +229,7 @@ const App = () => {
                 type="text"
                 id="id_date_2"
                 name="id_date_2"
-                value={inputValues2.de_Date}
+                value={inputValues22.de_Date}
                 onChange={() => SetinputValues2}
                 className="border border-gray-300 p-2 rounded"
               />
@@ -269,7 +243,7 @@ const App = () => {
                 type="text"
                 id="id_heure_2"
                 name="id_heure_2"
-                value={inputValues2.Heure}
+                value={inputValues22.Heure}
                 onChange={() => SetinputValues2}
                 className="border border-gray-300 p-2 rounded"
               />
