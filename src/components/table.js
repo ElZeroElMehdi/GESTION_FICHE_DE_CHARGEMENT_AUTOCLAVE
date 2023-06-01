@@ -1,47 +1,43 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-const Table = ({ inputValues2 }) => {
-    console.log('you are in table');
-    console.log(inputValues2);
+const Table = ({ data }) => {
+    console.log(data);
     return (
         <>
-            <div className='border border-black w-full m-2'>
-                <div className='flex justify-center'>
-                    <div className="mb-4 m-auto">
-                        Désignation
-                    </div>
-                    <div className="mb-4 m-auto">
-                        N° OF
-                    </div>
-                    <div className="mb-4 m-auto">
+            {
+                data.length > 0 && (
+                    <div className='border border-black w-full m-2 bg-slate-400'>
+                        <div className='flex justify-center'>
+                            <div className="mb-4 m-auto">
+                                Désignation
+                            </div>
+                            <div className="mb-4 m-auto">
+                                N° OF
+                            </div>
+                            <div className="mb-4 m-auto">
 
-                        N° PV
+                                N° PV
+                            </div>
+                            <div className="mb-4 m-auto">
+                                N° TC
+                            </div>
+                        </div>
                     </div>
-                    <div className="mb-4 m-auto">
-                        N° TC
+                )
+            }
+            {data.map((item, index) => (
+                <div key={index}>
+                    <div className='border border-black w-full m-2'>
+                        <div className='flex justify-center bg-slate-200'>
+                            <div className="mb-4 m-auto p-">{item.des}</div>
+                            <div className="mb-4 m-auto">{item.of}</div>
+                            <div className="mb-4 m-auto">{item.pv}</div>
+                            <div className="mb-4 m-auto">{item.tc}</div>
+                        </div>
+
                     </div>
                 </div>
-            </div>
-
-            <div className='border border-black w-full m-2'>
-            {inputValues2.length > 1 && (
-                <div className='flex justify-center'>
-                    <div className="mb-4 m-auto">
-                    exampl
-                    </div>
-                    <div className="mb-4 m-auto">
-                    exampl
-                    </div>
-                    <div className="mb-4 m-auto">
-                    example
-                    </div>
-                    <div className="mb-4 m-auto">
-                    example
-                    </div>
-                </div>
-            )}
-
-            </div>
+            ))}
         </>
     );
 };

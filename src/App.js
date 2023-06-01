@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import "./App.css"
 import Table from './components/table';
 
@@ -16,17 +16,57 @@ const App = () => {
     tc: '',
   });
   const [inputValues22, SetinputValues22] = useState('');
-  const array = [{}];
-  var add = () => {
-    array.push(inputValues2);
-    SetinputValues2({
-      Designation: '',
-      of: '',
-      pv: '',
-      tc: '',
-    });
-    console.log(array);
+  // const array = [{}];
+  // var add = () => {
+  //   array.push(inputValues2);
+  //   SetinputValues2({
+  //     Designation: '',
+  //     of: '',
+  //     pv: '',
+  //     tc: '',
+  //   });
+  // };
+  {/* ***************** */}
+  const [values, setValues] = useState([]);
+  
+  const [tc, setInput4] = useState('');
+  const [pv, setInput3] = useState('');
+  const [of, setInput2] = useState('');
+  const [des, setInput1] = useState('');
+  
+  const handleInputChange1 = (event) => {
+    setInput1(event.target.value);
   };
+  
+  const handleInputChange2 = (event) => {
+    setInput2(event.target.value);
+  };
+  
+  const handleInputChange3 = (event) => {
+    setInput3(event.target.value);
+  };
+  
+  const handleInputChange4 = (event) => {
+    setInput4(event.target.value);
+  };
+  
+  const handleAdd = () => {
+    const newValues = [...values, { tc, pv, of, des }];
+    if (tc && pv && of && des) {
+      setValues(newValues);
+      setInput1('');
+      setInput2('');
+      setInput3('');
+      setInput4('');
+    }
+  };
+  {/* ***************** */}
+
+
+
+
+
+
   return (
     <>
       <div className="p-4">
@@ -132,8 +172,7 @@ const App = () => {
         
 
         {/* ***************** */}
-        {console.log("i will call to table with:", array.length)}
-        <Table inputValues2={array}/>
+        <Table data={values}/>
         {/* ***************** */}
 
         
@@ -146,8 +185,8 @@ const App = () => {
               <select
                 id="id_designation"
                 name="id_designation"
-                value={inputValues2.Designation}
-                onChange={(e) => SetinputValues2({...inputValues2,Designation: e.target.value,})}
+                value={des}
+                onChange={handleInputChange1}
                 className="border border-gray-300 p-2 rounded"
               >
                 <option value="">Désignation </option>
@@ -164,8 +203,8 @@ const App = () => {
                 type="text"
                 id="id_n_of"
                 name="id_n_of"
-                value={inputValues2.of}
-                onChange={(e) => SetinputValues2({...inputValues2,of: e.target.value,})}
+                value={of}
+                onChange={handleInputChange2}
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
@@ -177,8 +216,8 @@ const App = () => {
                 type="text"
                 id="id_n_pv"
                 name="id_n_pv"
-                value={inputValues2.pv}
-                onChange={(e) => SetinputValues2({...inputValues2,pv: e.target.value,})}
+                value={pv}
+                onChange={handleInputChange3}
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
@@ -190,13 +229,13 @@ const App = () => {
                 type="text"
                 id="id_n_tc"
                 name="id_n_tc"
-                value={inputValues2.tc}
-                onChange={(e) => SetinputValues2({...inputValues2,tc: e.target.value,})}
+                value={tc}
+                onChange={handleInputChange4}
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
             <div className="mb-4 m-2">
-              <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center" onClick={add}>
+              <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center" onClick={handleAdd}>
                 <span className="mr-2">+</span>
                 Add Row
               </button>
