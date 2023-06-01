@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./App.css"
 import Table from './components/table';
 import print from './print.png';
+import update_time from './time_update.png';
 
 const handlePrint = () => {
   //hide all inputs
@@ -17,17 +18,7 @@ const App = () => {
     tc: '',
   });
   const [inputValues22, SetinputValues22] = useState('');
-  // const array = [{}];
-  // var add = () => {
-  //   array.push(inputValues2);
-  //   SetinputValues2({
-  //     Designation: '',
-  //     of: '',
-  //     pv: '',
-  //     tc: '',
-  //   });
-  // };
-  {/* ***************** */}
+  
   const [values, setValues] = useState([]);
   
   const [tc, setInput4] = useState('');
@@ -121,6 +112,19 @@ const App = () => {
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
+            <div className="mb-4  m-2">
+              <label htmlFor="id_n_cycle" className="mr-2">
+                N° courbe
+              </label>
+              <input
+                type="text"
+                id="id_n_cycle"
+                name="id_n_cycle"
+                value={inputValues22.Cycle}
+                onChange={() => SetinputValues22}
+                className="border border-gray-300 p-2 rounded"
+              />
+            </div>
           </div>
         </div>
         <div className='border border-black w-full m-2'>
@@ -166,6 +170,15 @@ const App = () => {
                 onChange={() => SetinputValues22}
                 className="border border-gray-300 p-2 rounded"
               />
+            </div>
+            <div className="mb-4  m-2">
+              <img src={update_time} alt='print' className='w-9' onClick={() => {
+                SetinputValues22({
+                  ...inputValues22,
+                  Date: new Date().toLocaleDateString(),
+                  Heure: new Date().toLocaleTimeString(),
+                });
+              }}/>
             </div>
 
           </div>
