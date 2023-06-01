@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./App.css"
 import Table from './components/table';
+import print from './print.png';
 
 const handlePrint = () => {
   //hide all inputs
@@ -291,7 +292,9 @@ const App = () => {
           </div>
         </div>
       </div>
-      <div className='btn w-full flex justify-center' onClick={handlePrint}>print (logo)</div>
+      <div className='btn w-full flex justify-center' onClick={handlePrint}>
+        <img src={print} alt="printer logo" className='w-10 h-10' />
+      </div>
     </>
   );
 };
