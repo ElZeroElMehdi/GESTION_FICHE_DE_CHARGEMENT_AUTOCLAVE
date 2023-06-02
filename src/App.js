@@ -11,12 +11,7 @@ const handlePrint = () => {
 };
 
 const App = () => {
-  const [inputValues2, SetinputValues2] = useState({
-    Designation: '',
-    of: '',
-    pv: '',
-    tc: '',
-  });
+  const [inputValues2, SetinputValues2] = useState([]);
   const [inputValues22, SetinputValues22] = useState('');
   
   const [values, setValues] = useState([]);
@@ -25,6 +20,8 @@ const App = () => {
   const [pv, setInput3] = useState('');
   const [of, setInput2] = useState('');
   const [des, setInput1] = useState('');
+  const [de_date, setInput5] = useState('');
+  const [de_heure, setInput6] = useState('');
   
   const handleInputChange1 = (event) => {
     setInput1(event.target.value);
@@ -43,7 +40,7 @@ const App = () => {
   };
   
   const handleAdd = () => {
-    const newValues = [...values, { tc, pv, of, des }];
+    const newValues = [...values, { tc, pv, of, des}];
     if (tc && pv && of && des) {
       setValues(newValues);
       setInput1('');
@@ -51,6 +48,10 @@ const App = () => {
       setInput3('');
       setInput4('');
     }
+  };
+  const handleAdd2 = () => {
+    setInput5(new Date().toLocaleDateString());
+    setInput6(new Date().toLocaleTimeString());
   };
   {/* ***************** */}
 
@@ -79,8 +80,8 @@ const App = () => {
                 type="text"
                 id="id_semaine"
                 name="id_semaine"
-                value={inputValues22.id_semaine}
-                onChange={() => SetinputValues22}
+                // value={inputValues22.id_semaine}
+                // onChange={() => SetinputValues22}
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
@@ -94,8 +95,8 @@ const App = () => {
                 type="text"
                 id="id_autoclave"
                 name="id_autoclave"
-                value={inputValues22.AUTOCLAVE}
-                onChange={() => SetinputValues22}
+                // value={inputValues22.AUTOCLAVE}
+                // onChange={() => SetinputValues22}
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
@@ -107,8 +108,8 @@ const App = () => {
                 type="text"
                 id="id_n_cycle"
                 name="id_n_cycle"
-                value={inputValues22.Cycle}
-                onChange={() => SetinputValues22}
+                // value={inputValues22.Cycle}
+                // onChange={() => SetinputValues22}
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
@@ -120,8 +121,8 @@ const App = () => {
                 type="text"
                 id="id_n_cycle"
                 name="id_n_cycle"
-                value={inputValues22.Cycle}
-                onChange={() => SetinputValues22}
+                // value={inputValues22.Cycle}
+                // onChange={() => SetinputValues22}
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
@@ -139,8 +140,8 @@ const App = () => {
                 type="text"
                 id="id_matricule_1"
                 name="id_matricule_1"
-                value={inputValues22.Matricule}
-                onChange={() => SetinputValues22}
+                // value={inputValues22.Matricule}
+                // onChange={() => SetinputValues22}
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
@@ -269,8 +270,8 @@ const App = () => {
                 type="text"
                 id="id_matricule_2"
                 name="id_matricule_2"
-                value={inputValues22.de_Matricule}
-                onChange={() => SetinputValues2}
+                // value={inputValues22.de_Matricule}
+                // onChange={() => SetinputValues2}
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
@@ -282,8 +283,7 @@ const App = () => {
                 type="text"
                 id="id_date_2"
                 name="id_date_2"
-                value={inputValues22.de_Date}
-                onChange={() => SetinputValues2}
+                value={de_date}
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
@@ -296,12 +296,13 @@ const App = () => {
                 type="text"
                 id="id_heure_2"
                 name="id_heure_2"
-                value={inputValues22.Heure}
-                onChange={() => SetinputValues2}
+                value={de_heure}
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
-
+            <div className="mb-4  m-2">
+              <img src={update_time} alt='print' className='w-9' onClick={handleAdd2} />
+            </div>
           </div>
         </div>
       </div>
