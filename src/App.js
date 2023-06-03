@@ -14,34 +14,34 @@ const handlePrint = () => {
 const App = () => {
   const [inputValues22, SetinputValues22] = useState('');
   const [selectedOptions, SetselectedOptions] = useState([]);
-  
+
   const [values, setValues] = useState([]);
-  
+
   const [tc, setInput4] = useState('');
   const [pv, setInput3] = useState('');
   const [of, setInput2] = useState('');
   const [des, setInput1] = useState('');
   const [de_date, setInput5] = useState('');
   const [de_heure, setInput6] = useState('');
-  
+
   const handleInputChange1 = (event) => {
     setInput1(event.target.value);
   };
-  
+
   const handleInputChange2 = (event) => {
     setInput2(event.target.value);
   };
-  
+
   // const handleInputChange3 = (event) => {
   //   setInput3(event.target.value);
   // };
-  
+
   // const handleInputChange4 = (event) => {
   //   setInput4(event.target.value);
   // };
-  
+
   const handleAdd = () => {
-    const newValues = [...values, { tc, pv, of, des}];
+    const newValues = [...values, { tc, pv, of, des }];
     // var newTc = '';
     // var newPv = '';
     for (let i = 0; i < selectedOptions.length; i++) {
@@ -67,7 +67,7 @@ const App = () => {
   useEffect(() => {
     console.log('selectedOptions:', selectedOptions);
   }, [selectedOptions]);
-  {/* ***************** */}
+  {/* ***************** */ }
 
 
 
@@ -193,18 +193,18 @@ const App = () => {
                   Date: new Date().toLocaleDateString(),
                   Heure: new Date().toLocaleTimeString(),
                 });
-              }}/>
+              }} />
             </div>
 
           </div>
         </div>
-        
+
 
         {/* ***************** */}
-        <Table data={values}/>
+        <Table data={values} />
         {/* ***************** */}
 
-        
+
         <div className='border border-black w-full m-2'>
           <div className='flex justify-center'>
             <div className="mb-4 m-2">
@@ -237,33 +237,21 @@ const App = () => {
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
-            <div className="mb-5 m-1">
-              <label htmlFor="id_n_pv" className="mr-2">
+            <div className=" m-3 flex justify-between">
+              <label htmlFor="id_n_pv" className="m-auto mr-1 p-3">
                 N° PV
               </label>
-              <ParentComponent SetselectedOptions={SetselectedOptions} />
-              {/* <input
-                type="text"
-                id="id_n_pv"
-                name="id_n_pv"
-                value={pv}
-                onChange={handleInputChange3}
-                className="border border-gray-300 p-2 rounded"
-              /> */}
+              <div className="mr-3 m-auto">
+                <ParentComponent SetselectedOptions={SetselectedOptions} />
+              </div>
             </div>
-            <div className="mb-5 m-1">
-              <label htmlFor="id_n_tc" className="mr-2">
+            <div className=" m-3 flex justify-between">
+              <label htmlFor="id_n_tc" className="m-auto mr-1 p-3">
                 N° TC
               </label>
-              <ParentComponent SetselectedOptions={SetselectedOptions} />
-              {/* <input
-                type="text"
-                id="id_n_tc"
-                name="id_n_tc"
-                value={tc}
-                onChange={handleInputChange4}
-                className="border border-gray-300 p-2 rounded"
-              /> */}
+              <div className="mr-3 m-auto">
+                <ParentComponent SetselectedOptions={SetselectedOptions} />
+              </div>
             </div>
             <div className="mb-4 m-2">
               <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center" onClick={handleAdd}>
@@ -323,9 +311,9 @@ const App = () => {
         </div>
       </div>
       <div className='flex justify-center'>
-      <div className='btn w-auto self-center flex m-2' onClick={handlePrint}>
-        <img src={print} alt="printer logo" className='w-10 h-10' />
-      </div>
+        <div className='btn w-auto self-center flex m-2' onClick={handlePrint}>
+          <img src={print} alt="printer logo" className='w-10 h-10' />
+        </div>
       </div>
     </>
   );

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from './modal';
+import { HiPlus } from 'react-icons/hi';
 
 const ParentComponent = ({SetselectedOptions}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,10 +20,10 @@ const ParentComponent = ({SetselectedOptions}) => {
   return (
     <div>
       <button
-        className="btn btn-primary bg"
+        className="flex items-center justify-center w-10 h-10 bg-blue-500 text-white rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
         onClick={openModal}
       >
-        Open Modal
+        <HiPlus className="w-6 h-6" />
       </button>
 
       <Modal
