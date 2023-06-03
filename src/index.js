@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import Test from './components/test';
+import ParentComponent from './components/parentModal';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
-    <Test />
+    {/* <ParentComponent /> */}
   </React.StrictMode>
 );

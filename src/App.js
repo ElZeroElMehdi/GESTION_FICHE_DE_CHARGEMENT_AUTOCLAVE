@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./App.css"
 import Table from './components/table';
 import print from './print.png';
 import update_time from './time_update.png';
+import ParentComponent from './components/parentModal';
 
 const handlePrint = () => {
   //hide all inputs
@@ -11,8 +12,8 @@ const handlePrint = () => {
 };
 
 const App = () => {
-  const [inputValues2, SetinputValues2] = useState([]);
   const [inputValues22, SetinputValues22] = useState('');
+  const [selectedOptions, SetselectedOptions] = useState([]);
   
   const [values, setValues] = useState([]);
   
@@ -31,16 +32,25 @@ const App = () => {
     setInput2(event.target.value);
   };
   
-  const handleInputChange3 = (event) => {
-    setInput3(event.target.value);
-  };
+  // const handleInputChange3 = (event) => {
+  //   setInput3(event.target.value);
+  // };
   
-  const handleInputChange4 = (event) => {
-    setInput4(event.target.value);
-  };
+  // const handleInputChange4 = (event) => {
+  //   setInput4(event.target.value);
+  // };
   
   const handleAdd = () => {
     const newValues = [...values, { tc, pv, of, des}];
+    // var newTc = '';
+    // var newPv = '';
+    for (let i = 0; i < selectedOptions.length; i++) {
+      // newTc += selectedOptions[i].value;
+      // newPv += selectedOptions[i].value;
+      console.log('loololoolol: ', selectedOptions[i].label);
+    }
+    // setInput3(newPv);
+    // setInput4(newTc);
     if (tc && pv && of && des) {
       setValues(newValues);
       setInput1('');
@@ -53,6 +63,10 @@ const App = () => {
     setInput5(new Date().toLocaleDateString());
     setInput6(new Date().toLocaleTimeString());
   };
+
+  useEffect(() => {
+    console.log('selectedOptions:', selectedOptions);
+  }, [selectedOptions]);
   {/* ***************** */}
 
 
@@ -223,31 +237,33 @@ const App = () => {
                 className="border border-gray-300 p-2 rounded"
               />
             </div>
-            <div className="mb-4 m-2">
+            <div className="mb-5 m-1">
               <label htmlFor="id_n_pv" className="mr-2">
                 N° PV
               </label>
-              <input
+              <ParentComponent SetselectedOptions={SetselectedOptions} />
+              {/* <input
                 type="text"
                 id="id_n_pv"
                 name="id_n_pv"
                 value={pv}
                 onChange={handleInputChange3}
                 className="border border-gray-300 p-2 rounded"
-              />
+              /> */}
             </div>
-            <div className="mb-4 m-2">
+            <div className="mb-5 m-1">
               <label htmlFor="id_n_tc" className="mr-2">
                 N° TC
               </label>
-              <input
+              <ParentComponent SetselectedOptions={SetselectedOptions} />
+              {/* <input
                 type="text"
                 id="id_n_tc"
                 name="id_n_tc"
                 value={tc}
                 onChange={handleInputChange4}
                 className="border border-gray-300 p-2 rounded"
-              />
+              /> */}
             </div>
             <div className="mb-4 m-2">
               <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center" onClick={handleAdd}>
@@ -306,8 +322,10 @@ const App = () => {
           </div>
         </div>
       </div>
-      <div className='btn w-full flex justify-center' onClick={handlePrint}>
+      <div className='flex justify-center'>
+      <div className='btn w-auto self-center flex m-2' onClick={handlePrint}>
         <img src={print} alt="printer logo" className='w-10 h-10' />
+      </div>
       </div>
     </>
   );
