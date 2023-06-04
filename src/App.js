@@ -20,6 +20,8 @@ const App = () => {
   const [des, setInput1] = useState('');
   const [de_date, setInput5] = useState('');
   const [de_heure, setInput6] = useState('');
+  const [tc, setInput3] = useState('');
+  const [pv, setInput4] = useState('');
 
   const handleInputChange1 = (event) => {
     setInput1(event.target.value);
@@ -30,15 +32,15 @@ const App = () => {
   };
 
   const handleAdd = () => {
-    var tc = selectedOptions.join(' - ');
-    var pv = selectedOptions2.join(' - ');
+    setInput3(selectedOptions.join(' - '));
+    setInput4(selectedOptions2.join(' - '));
     const newValues = [...values, { of, des, pv, tc}];
-    if (of && des && tc) {
+    if (of && des && tc && pv) {
       setValues(newValues);
       setInput1('');
       setInput2('');
-      tc = '';
-      pv = '';
+      setInput3('');
+      setInput4('');
     }
   };
 
@@ -50,6 +52,20 @@ const App = () => {
   useEffect(() => {}, [selectedOptions]);
 
   useEffect(() => {}, [selectedOptions2]);
+
+  const saveAsJson = () => {
+    const date = {
+      semaine : inputValues22.id_semaine,
+      autoclave : inputValues22.id_autoclave,
+      n_cycle : inputValues22.id_n_cycle,
+      n_courbe : inputValues22.id_n_courbe,
+      matricule_1 : inputValues22.id_matricule_1,
+      _de_date : de_date,
+      _de_heure : de_heure,
+      table : values,
+    };
+    console.log(date);
+  };
 
   return (
     <>
@@ -290,6 +306,9 @@ const App = () => {
       <div className='flex justify-center'>
         <div className='btn w-auto self-center flex m-2' onClick={handlePrint}>
           <img src={print} alt="printer logo" className='w-10 h-10' />
+        </div>
+        <div className='btn w-auto self-center flex m-2' onClick={saveAsJson}>
+          <h1 className='text-center'>save</h1>
         </div>
       </div>
     </>

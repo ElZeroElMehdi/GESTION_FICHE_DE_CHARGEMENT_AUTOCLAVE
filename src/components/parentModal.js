@@ -15,6 +15,8 @@ const ParentComponent = ({SetselectedOptions}) => {
 
   const handleSaveModal = (selectedOptions) => {
     SetselectedOptions(selectedOptions);
+    //clear the selected options
+    
   };
 
   return (
