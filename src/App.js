@@ -13,6 +13,7 @@ const handlePrint = () => {
 const App = () => {
   const [inputValues22, SetinputValues22] = useState('');
   const [selectedOptions, SetselectedOptions] = useState([]);
+  const [selectedOptions2, SetselectedOptions2] = useState([]);
 
   const [values, setValues] = useState([]);
   const [of, setInput2] = useState('');
@@ -29,13 +30,15 @@ const App = () => {
   };
 
   const handleAdd = () => {
-    const newValues = [...values, { of, des }];
-    console.log("Selected Options:");
-    selectedOptions.map((option) => console.log("optins :" ,option));
-    if (of && des) {
+    var tc = selectedOptions.join(' - ');
+    var pv = selectedOptions2.join(' - ');
+    const newValues = [...values, { of, des, pv, tc}];
+    if (of && des && tc) {
       setValues(newValues);
       setInput1('');
       setInput2('');
+      tc = '';
+      pv = '';
     }
   };
 
@@ -44,9 +47,9 @@ const App = () => {
     setInput6(new Date().toLocaleTimeString());
   };
 
-  useEffect(() => {
-    console.log('selectedOptions:', selectedOptions);
-  }, [selectedOptions]);
+  useEffect(() => {}, [selectedOptions]);
+
+  useEffect(() => {}, [selectedOptions2]);
 
   return (
     <>
@@ -216,7 +219,7 @@ const App = () => {
                 N° PV
               </label>
               <div className="mr-3 m-auto">
-                <ParentComponent SetselectedOptions={SetselectedOptions} />
+                <ParentComponent SetselectedOptions={SetselectedOptions2} />
               </div>
             </div>
             <div className=" m-3 flex justify-between">
