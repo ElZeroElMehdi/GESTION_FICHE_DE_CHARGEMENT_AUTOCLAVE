@@ -6,8 +6,7 @@ import update_time from './time_update.png';
 import ParentComponent from './components/parentModal';
 
 const handlePrint = () => {
-  //hide all inputs
-  console.log('print');
+  //hide all inputs && buttons && icons && images
   window.print();
 };
 
@@ -16,9 +15,6 @@ const App = () => {
   const [selectedOptions, SetselectedOptions] = useState([]);
 
   const [values, setValues] = useState([]);
-
-  const [tc, setInput4] = useState('');
-  const [pv, setInput3] = useState('');
   const [of, setInput2] = useState('');
   const [des, setInput1] = useState('');
   const [de_date, setInput5] = useState('');
@@ -32,33 +28,17 @@ const App = () => {
     setInput2(event.target.value);
   };
 
-  // const handleInputChange3 = (event) => {
-  //   setInput3(event.target.value);
-  // };
-
-  // const handleInputChange4 = (event) => {
-  //   setInput4(event.target.value);
-  // };
-
   const handleAdd = () => {
-    const newValues = [...values, { tc, pv, of, des }];
-    // var newTc = '';
-    // var newPv = '';
-    for (let i = 0; i < selectedOptions.length; i++) {
-      // newTc += selectedOptions[i].value;
-      // newPv += selectedOptions[i].value;
-      console.log('loololoolol: ', selectedOptions[i].label);
-    }
-    // setInput3(newPv);
-    // setInput4(newTc);
-    if (tc && pv && of && des) {
+    const newValues = [...values, { of, des }];
+    console.log("Selected Options:");
+    selectedOptions.map((option) => console.log("optins :" ,option));
+    if (of && des) {
       setValues(newValues);
       setInput1('');
       setInput2('');
-      setInput3('');
-      setInput4('');
     }
   };
+
   const handleAdd2 = () => {
     setInput5(new Date().toLocaleDateString());
     setInput6(new Date().toLocaleTimeString());
@@ -67,12 +47,6 @@ const App = () => {
   useEffect(() => {
     console.log('selectedOptions:', selectedOptions);
   }, [selectedOptions]);
-  {/* ***************** */ }
-
-
-
-
-
 
   return (
     <>

@@ -25,12 +25,10 @@ const ParentComponent = ({SetselectedOptions}) => {
       >
         <HiPlus className="w-6 h-6" />
       </button>
-
       <Modal
         isOpen={isModalOpen}
         onClose={closeModal}
         onSave={handleSaveModal}
-        
       />
     </div>
   );
