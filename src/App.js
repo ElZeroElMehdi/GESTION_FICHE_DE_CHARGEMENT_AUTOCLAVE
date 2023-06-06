@@ -11,6 +11,17 @@ const handlePrint = () => {
 };
 
 const App = () => {
+
+  var FuncWeekNumber = () =>
+  {
+    var currentDate = new Date();
+    var startDate = new Date(currentDate.getFullYear(), 0, 1);
+    var days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
+    
+    var weekNumber = Math.ceil(days / 7);
+    return weekNumber;
+  }
+
   const [inputValues22, SetinputValues22] = useState('');
   const [selectedOptions, SetselectedOptions] = useState([]);
   const [selectedOptions2, SetselectedOptions2] = useState([]);
@@ -83,14 +94,7 @@ const App = () => {
               <label htmlFor="id_semaine" className="mr-2">
                 N° SEMAINE
               </label>
-              <input
-                type="text"
-                id="id_semaine"
-                name="id_semaine"
-                // value={inputValues22.id_semaine}
-                // onChange={() => SetinputValues22}
-                className="border border-gray-300 p-2 rounded"
-              />
+              <span className="border border-gray-300 p-2 rounded"> { FuncWeekNumber() }  </span>
             </div>
           </div>
           <div className='flex m-2 border border-black'>
