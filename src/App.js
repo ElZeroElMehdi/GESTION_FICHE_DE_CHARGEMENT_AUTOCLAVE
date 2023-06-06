@@ -5,10 +5,11 @@ import print from './print.png';
 import update_time from './time_update.png';
 import ParentComponent from './components/parentModal';
 
-const handlePrint = () => {
-  //hide all inputs && buttons && icons && images
-  window.print();
-};
+// const handlePrint = () => {
+//   //hide ParentComponent and all inputs replace them with his value
+
+//   window.print();
+// };
 
 const App = () => {
 
@@ -94,7 +95,7 @@ const App = () => {
               <label htmlFor="id_semaine" className="mr-2">
                 N° SEMAINE
               </label>
-              <span className="border border-gray-300 p-2 rounded"> { FuncWeekNumber() }  </span>
+              <span className="border-gray-300 m-auto"> { FuncWeekNumber() }  </span>
             </div>
           </div>
           <div className='flex m-2 border border-black'>
@@ -108,7 +109,7 @@ const App = () => {
                 name="id_autoclave"
                 // value={inputValues22.AUTOCLAVE}
                 // onChange={() => SetinputValues22}
-                className="border border-gray-300 p-2 rounded"
+                className="border border-gray-300 m-auto rounded"
               />
             </div>
             <div className="mb-4  m-2">
@@ -121,7 +122,7 @@ const App = () => {
                 name="id_n_cycle"
                 // value={inputValues22.Cycle}
                 // onChange={() => SetinputValues22}
-                className="border border-gray-300 p-2 rounded"
+                className="border border-gray-300 m-auto rounded"
               />
             </div>
             <div className="mb-4  m-2">
@@ -134,7 +135,7 @@ const App = () => {
                 name="id_n_cycle"
                 // value={inputValues22.Cycle}
                 // onChange={() => SetinputValues22}
-                className="border border-gray-300 p-2 rounded"
+                className="border border-gray-300 m-auto rounded"
               />
             </div>
           </div>
@@ -153,7 +154,7 @@ const App = () => {
                 name="id_matricule_1"
                 // value={inputValues22.Matricule}
                 // onChange={() => SetinputValues22}
-                className="border border-gray-300 p-2 rounded"
+                className="border border-gray-300 m-auto rounded"
               />
             </div>
             <div className="mb-4 m-2">
@@ -166,7 +167,7 @@ const App = () => {
                 name="id_date_1"
                 value={inputValues22.Date}
                 onChange={() => SetinputValues22}
-                className="border border-gray-300 p-2 rounded"
+                className="border border-gray-300 m-auto rounded"
               />
             </div>
 
@@ -180,7 +181,7 @@ const App = () => {
                 name="id_heure_1"
                 value={inputValues22.Heure}
                 onChange={() => SetinputValues22}
-                className="border border-gray-300 p-2 rounded"
+                className="border border-gray-300 m-auto rounded"
               />
             </div>
             <div className="mb-4  m-2">
@@ -213,7 +214,7 @@ const App = () => {
                 name="id_designation"
                 value={des}
                 onChange={handleInputChange1}
-                className="border border-gray-300 p-2 rounded"
+                className="border border-gray-300 m-auto rounded"
               >
                 <option value="">Désignation </option>
                 <option value="option1">Option 1</option>
@@ -231,7 +232,7 @@ const App = () => {
                 name="id_n_of"
                 value={of}
                 onChange={handleInputChange2}
-                className="border border-gray-300 p-2 rounded"
+                className="border border-gray-300 m-auto rounded"
               />
             </div>
             <div className=" m-3 flex justify-between">
@@ -273,7 +274,7 @@ const App = () => {
                 name="id_matricule_2"
                 // value={inputValues22.de_Matricule}
                 // onChange={() => SetinputValues2}
-                className="border border-gray-300 p-2 rounded"
+                className="border border-gray-300 m-auto rounded"
               />
             </div>
             <div className="mb-4 m-2">
@@ -285,7 +286,7 @@ const App = () => {
                 id="id_date_2"
                 name="id_date_2"
                 value={de_date}
-                className="border border-gray-300 p-2 rounded"
+                className="border border-gray-300 m-auto rounded"
               />
             </div>
 
@@ -298,7 +299,7 @@ const App = () => {
                 id="id_heure_2"
                 name="id_heure_2"
                 value={de_heure}
-                className="border border-gray-300 p-2 rounded"
+                className="border border-gray-300 m-auto rounded"
               />
             </div>
             <div className="mb-4  m-2">
@@ -308,7 +309,10 @@ const App = () => {
         </div>
       </div>
       <div className='flex justify-center'>
-        <div className='btn w-auto self-center flex m-2' onClick={handlePrint}>
+        <div className='btn w-auto self-center flex m-2' onClick={() =>{
+          
+          window.print();
+        }}>
           <img src={print} alt="printer logo" className='w-10 h-10' />
         </div>
         <div className='btn w-auto self-center flex m-2' onClick={saveAsJson}>
