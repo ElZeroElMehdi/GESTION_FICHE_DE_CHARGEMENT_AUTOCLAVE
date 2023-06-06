@@ -28,12 +28,11 @@ const Table = ({ data }) => {
                 <div key={index}>
                     <div className='border border-black w-full m-2'>
                         <div className='flex justify-center bg-slate-200'>
-                            <div className="mb-4 m-auto p-">{item.des}</div>
-                            <div className="mb-4 m-auto">{item.of}</div>
-                            <div className="mb-4 m-auto">{item.pv}</div>
-                            <div className="mb-4 m-auto">{item.tc}</div>
+                            <div className="mb-4 m-auto w-60 text-center">{item.des}</div>
+                            <div className="mb-4 m-auto w-60 text-center">{item.of}</div>
+                            <div className="mb-4 m-auto w-60 text-center">{item.pv}</div>
+                            <div className="mb-4 m-auto w-60 text-center">{item.tc}</div>
                         </div>
-
                     </div>
                 </div>
             ))}
