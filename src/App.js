@@ -13,21 +13,26 @@ import ParentComponent from './components/parentModal';
 
 const App = () => {
 
-  var FuncWeekNumber = () =>
-  {
+  var FuncWeekNumber = () => {
     var currentDate = new Date();
     var startDate = new Date(currentDate.getFullYear(), 0, 1);
     var days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
-    
+
     var weekNumber = Math.ceil(days / 7);
     return weekNumber;
   }
+
+  var isHide = false;
 
   const [inputValues22, SetinputValues22] = useState('');
   const [selectedOptions, SetselectedOptions] = useState([]);
   const [selectedOptions2, SetselectedOptions2] = useState([]);
 
   const [values, setValues] = useState([]);
+  const [autoclave, setInputautoclave] = useState('');
+  const [Cycle, setInputCycle] = useState('');
+  const [Courbe, setInputCourbe] = useState('');
+  const [Matricule, setInputMatricule] = useState('');
   const [of, setInput2] = useState('');
   const [des, setInput1] = useState('');
   const [de_date, setInput5] = useState('');
@@ -39,6 +44,11 @@ const App = () => {
     setInput1(event.target.value);
   };
 
+  const handleInputautoclave = (event) => { setInputautoclave(event.target.value); };
+  const handleInputCycle = (event) => { setInputCycle(event.target.value); };
+  const handleInputCourbe = (event) => { setInputCourbe(event.target.value); };
+  const handleInputMatricule = (event) => { setInputMatricule(event.target.value); };
+
   const handleInputChange2 = (event) => {
     setInput2(event.target.value);
   };
@@ -46,7 +56,7 @@ const App = () => {
   const handleAdd = () => {
     setInput3(selectedOptions.join(' - '));
     setInput4(selectedOptions2.join(' - '));
-    const newValues = [...values, { of, des, pv, tc}];
+    const newValues = [...values, { of, des, pv, tc }];
     if (of && des && tc && pv) {
       setValues(newValues);
       setInput1('');
@@ -61,23 +71,28 @@ const App = () => {
     setInput6(new Date().toLocaleTimeString());
   };
 
-  useEffect(() => {}, [selectedOptions]);
+  useEffect(() => { }, [selectedOptions]);
 
-  useEffect(() => {}, [selectedOptions2]);
+  useEffect(() => { }, [selectedOptions2]);
 
   const saveAsJson = () => {
-    const date = {
-      semaine : inputValues22.id_semaine,
-      autoclave : inputValues22.id_autoclave,
-      n_cycle : inputValues22.id_n_cycle,
-      n_courbe : inputValues22.id_n_courbe,
-      matricule_1 : inputValues22.id_matricule_1,
-      _de_date : de_date,
-      _de_heure : de_heure,
-      table : values,
+    const data = {
+      semaine: FuncWeekNumber(),
+      autoclave: autoclave,
+      n_cycle: Cycle,
+      n_courbe: Courbe,
+      matricule_1: Matricule,
+      _de_date: de_date,
+      _de_heure: de_heure,
+      table: values,
     };
-    console.log(date);
+
+    const jsonData = JSON.stringify(data, null, 2); // Convert object to JSON string with 2-space indentation
+
+    localStorage.setItem('data.json', jsonData);
+    console.log('JSON data saved successfully.');
   };
+
 
   return (
     <>
@@ -87,18 +102,18 @@ const App = () => {
           <div className="flex-auto bg-gray-500 justify-center text-center border-s-2">
             <h1 className="text-2xl font-bold m-auto w-max justify-center text-center">FICHE DE CHARGEMENT AUTOCLAVE</h1>
           </div>
-          <div className="flex-auto bg-gray-500 justify-center text-center border-s-2"> Page 1/1 </div>
+          <div className="flex-auto bg-gray-500 justify-center text-center border-s-2"> -</div>
         </div>
-        <div className='flex justify-center'>
-          <div className='flex m-2 border border-black '>
-            <div className="mb-4  border-black m-2">
+        <div className='flex justify-center m-2'>
+          <div className='flex'>
+            <div className="mb-4  m-auto p-1 justify-center text-center ">
               <label htmlFor="id_semaine" className="mr-2">
                 N° SEMAINE
               </label>
-              <span className="border-gray-300 m-auto"> { FuncWeekNumber() }  </span>
+              <span className="border-gray-300 m-auto"> {FuncWeekNumber()}  </span>
             </div>
           </div>
-          <div className='flex m-2 border border-black'>
+          <div className='flex m-auto border border-black'>
             <div className="mb-4 m-2">
               <label htmlFor="id_autoclave" className="mr-2">
                 AUTOCLAVE
@@ -107,8 +122,8 @@ const App = () => {
                 type="text"
                 id="id_autoclave"
                 name="id_autoclave"
-                // value={inputValues22.AUTOCLAVE}
-                // onChange={() => SetinputValues22}
+                value={autoclave}
+                onChange={handleInputautoclave}
                 className="border border-gray-300 m-auto rounded"
               />
             </div>
@@ -120,8 +135,8 @@ const App = () => {
                 type="text"
                 id="id_n_cycle"
                 name="id_n_cycle"
-                // value={inputValues22.Cycle}
-                // onChange={() => SetinputValues22}
+                value={Cycle}
+                onChange={handleInputCycle}
                 className="border border-gray-300 m-auto rounded"
               />
             </div>
@@ -133,8 +148,8 @@ const App = () => {
                 type="text"
                 id="id_n_cycle"
                 name="id_n_cycle"
-                // value={inputValues22.Cycle}
-                // onChange={() => SetinputValues22}
+                value={Courbe}
+                onChange={handleInputCourbe}
                 className="border border-gray-300 m-auto rounded"
               />
             </div>
@@ -152,37 +167,39 @@ const App = () => {
                 type="text"
                 id="id_matricule_1"
                 name="id_matricule_1"
-                // value={inputValues22.Matricule}
-                // onChange={() => SetinputValues22}
+                value={Matricule}
+                onChange={handleInputMatricule}
                 className="border border-gray-300 m-auto rounded"
               />
             </div>
-            <div className="mb-4 m-2">
+            <div className="mb-4 m-3">
               <label htmlFor="id_date_1" className="mr-2">
-                Date
+                Date :
               </label>
-              <input
+              <span className=" border-gray-300 m-auto"> <strong>{inputValues22.Date}</strong> </span>
+              {/* <input
                 type="text"
                 id="id_date_1"
                 name="id_date_1"
                 value={inputValues22.Date}
                 onChange={() => SetinputValues22}
                 className="border border-gray-300 m-auto rounded"
-              />
+              /> */}
             </div>
 
-            <div className="mb-4 m-2">
+            <div className="mb-4 m-3">
               <label htmlFor="id_heure_1" className="mr-2">
-                Heure
+                Heure :
               </label>
-              <input
+              <span className=" border-gray-300 m-auto"> <strong>{inputValues22.Heure}</strong> </span>
+              {/* <input
                 type="text"
                 id="id_heure_1"
                 name="id_heure_1"
                 value={inputValues22.Heure}
                 onChange={() => SetinputValues22}
                 className="border border-gray-300 m-auto rounded"
-              />
+              /> */}
             </div>
             <div className="mb-4  m-2">
               <img src={update_time} alt='print' className='w-9' onClick={() => {
@@ -203,7 +220,7 @@ const App = () => {
         {/* ***************** */}
 
 
-        <div className='border border-black w-full m-2'>
+        <div className='border border-black w-full m-2' >
           <div className='flex justify-center'>
             <div className="mb-4 m-2">
               <label htmlFor="id_designation" className="mr-2">
@@ -214,7 +231,7 @@ const App = () => {
                 name="id_designation"
                 value={des}
                 onChange={handleInputChange1}
-                className="border border-gray-300 m-auto rounded"
+                className="border border-gray-300 p-2 rounded"
               >
                 <option value="">Désignation </option>
                 <option value="option1">Option 1</option>
@@ -232,7 +249,7 @@ const App = () => {
                 name="id_n_of"
                 value={of}
                 onChange={handleInputChange2}
-                className="border border-gray-300 m-auto rounded"
+                className="border border-gray-300 p-2 rounded"
               />
             </div>
             <div className=" m-3 flex justify-between">
@@ -279,28 +296,30 @@ const App = () => {
             </div>
             <div className="mb-4 m-2">
               <label htmlFor="id_date_2" className="mr-2">
-                Date
+                Date :
               </label>
-              <input
+              <span className=" border-gray-300 m-auto"> <strong>{de_date}</strong> </span>
+              {/* <input
                 type="text"
                 id="id_date_2"
                 name="id_date_2"
                 value={de_date}
                 className="border border-gray-300 m-auto rounded"
-              />
+              /> */}
             </div>
 
             <div className="mb-4 m-2">
               <label htmlFor="id_heure_2" className="mr-2">
-                Heure
+                Heure :
               </label>
-              <input
+              <span className=" border-gray-300 m-auto"> <strong>{de_heure}</strong> </span>
+              {/* <input
                 type="text"
                 id="id_heure_2"
                 name="id_heure_2"
                 value={de_heure}
                 className="border border-gray-300 m-auto rounded"
-              />
+              /> */}
             </div>
             <div className="mb-4  m-2">
               <img src={update_time} alt='print' className='w-9' onClick={handleAdd2} />
@@ -309,8 +328,8 @@ const App = () => {
         </div>
       </div>
       <div className='flex justify-center'>
-        <div className='btn w-auto self-center flex m-2' onClick={() =>{
-          
+        <div className='btn w-auto self-center flex m-2' onClick={() => {
+
           window.print();
         }}>
           <img src={print} alt="printer logo" className='w-10 h-10' />

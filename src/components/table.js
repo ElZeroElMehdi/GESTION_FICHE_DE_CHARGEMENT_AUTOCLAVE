@@ -7,17 +7,17 @@ const Table = ({ data }) => {
                 data.length > 0 && (
                     <div className='border border-black w-full m-2 bg-slate-400'>
                         <div className='flex justify-center'>
-                            <div className="mb-4 m-auto">
-                                Désignation
+                            <div className="w-full m-2 text-center border-r border-black">
+                                Désignation 
                             </div>
-                            <div className="mb-4 m-auto">
+                            <div className="w-full m-2 text-center border-r border-black">
                                 N° OF
                             </div>
-                            <div className="mb-4 m-auto">
+                            <div className="w-full m-2 text-center border-r border-black">
 
                                 N° PV
                             </div>
-                            <div className="mb-4 m-auto">
+                            <div className="w-full m-2 text-center">
                                 N° TC
                             </div>
                         </div>
@@ -28,10 +28,10 @@ const Table = ({ data }) => {
                 <div key={index}>
                     <div className='border border-black w-full m-2'>
                         <div className='flex justify-center bg-slate-200'>
-                            <div className="mb-4 m-auto w-60 text-center">{item.des}</div>
-                            <div className="mb-4 m-auto w-60 text-center">{item.of}</div>
-                            <div className="mb-4 m-auto w-60 text-center">{item.pv}</div>
-                            <div className="mb-4 m-auto w-60 text-center">{item.tc}</div>
+                            <div className="w-full m-2 text-center border-r border-black">{item.des}</div>
+                            <div className="w-full m-2 text-center border-r border-black">{item.of}</div>
+                            <div className="w-full m-2 text-center border-r border-black">{item.pv}</div>
+                            <div className="w-full m-2 text-center">{item.tc}</div>
                         </div>
                     </div>
                 </div>
