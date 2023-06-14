@@ -396,9 +396,6 @@ const App = () => {
           <nav>
             <ul>
               <li>
-                <Link to="/">App</Link>
-              </li>
-              <li>
                 <Link to="/fetchData">Fetch</Link>
               </li>
             </ul>

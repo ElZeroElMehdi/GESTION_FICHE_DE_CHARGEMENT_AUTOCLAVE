@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const ObjectList = () => {
+  const history = useHistory();
   const [objects, setObjects] = useState([]);
 
   useEffect(() => {
@@ -16,51 +19,38 @@ const ObjectList = () => {
       console.error('Error fetching objects:', error);
     }
   };
-  console.log('OBJECT :', objects);
+
+  // const sendObj = (object) => {
+  //   const encodedObject = encodeURIComponent(JSON.stringify(object));
+  //   history.push(`/destination?object=${encodedObject}`);
+  // };
+
   return (
     <div>
       <ul>
-        {
-          objects.map((object) => (
-            <li key={object.id} className="mb-2">
-              <div>
-                <strong>Semaine:</strong> {object.semaine}
-              </div>
-              <div>
-                <strong>Autoclave:</strong> {object.autoclave}
-              </div>
-              <div>
-                <strong>N° Cycle:</strong> {object.n_cycle}
-              </div>
-              <div>
-                <strong>N° Courbe:</strong> {object.n_courbe}
-              </div>
-              <div>
-                <strong>Matricule 1:</strong> {object.matricule_1}
-              </div>
-              <div>
-                <strong>Date:</strong> {object._de_date}
-              </div>
-              <div>
-                <strong>Heure:</strong> {object._de_heure}
-              </div>
-              <div>
-                <strong>Table:</strong>
-                <div className='w-full bg-slate-500 m-auto'>
-                  <ul>
-                    {object.table.map((item, index) => (
-                      <li key={index}>
-                        des: {item.des}, of: {item.of}, pv: {item.pv}, tc: {item.tc}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </li>
-          ))}
+        {objects.map((object) => (
+          <li key={object.id} className="mb-2">
+            <div>
+              <strong>Semaine:</strong> {object.semaine}
+            </div>
+            <div>
+              <strong>Matricule 1:</strong> {object.matricule_1}
+            </div>
+            <Link
+              to={{
+                pathname: '/DestinationPage',
+                state: { object: object },
+              }}
+              target="_blank"
+            >
+              Open Destination Page
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
 };
 
 export default ObjectList;
+
