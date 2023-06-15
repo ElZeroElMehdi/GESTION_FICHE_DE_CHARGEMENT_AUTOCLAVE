@@ -138,6 +138,7 @@ const App = () => {
       _de_date: de_date,
       _de_heure: de_heure,
       table: values,
+      de_date,
     };
     sendObjectToBackend(data);
     // fetchObjectsFromBackend();
@@ -227,14 +228,6 @@ const App = () => {
                 Date :
               </label>
               <span className=" border-gray-300 m-auto"> <strong>{inputValues22.Date}</strong> </span>
-              {/* <input
-                type="text"
-                id="id_date_1"
-                name="id_date_1"
-                value={inputValues22.Date}
-                onChange={() => SetinputValues22}
-                className="border border-gray-300 m-auto rounded"
-              /> */}
             </div>
 
             <div className="mb-4 m-3">
@@ -242,14 +235,6 @@ const App = () => {
                 Heure :
               </label>
               <span className=" border-gray-300 m-auto"> <strong>{inputValues22.Heure}</strong> </span>
-              {/* <input
-                type="text"
-                id="id_heure_1"
-                name="id_heure_1"
-                value={inputValues22.Heure}
-                onChange={() => SetinputValues22}
-                className="border border-gray-300 m-auto rounded"
-              /> */}
             </div>
             <div className="mb-4  m-2">
               <img src={update_time} alt='print' className='w-9' onClick={() => {
@@ -287,6 +272,7 @@ const App = () => {
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>
                 <option value="option3">Option 3</option>
+                <option value="example">Option for example</option>
               </select>
             </div>
             <div className="mb-4 m-2">
@@ -339,8 +325,6 @@ const App = () => {
                 type="text"
                 id="id_matricule_2"
                 name="id_matricule_2"
-                // value={inputValues22.de_Matricule}
-                // onChange={() => SetinputValues2}
                 className="border border-gray-300 m-auto rounded"
               />
             </div>
@@ -349,13 +333,7 @@ const App = () => {
                 Date :
               </label>
               <span className=" border-gray-300 m-auto"> <strong>{de_date}</strong> </span>
-              {/* <input
-                type="text"
-                id="id_date_2"
-                name="id_date_2"
-                value={de_date}
-                className="border border-gray-300 m-auto rounded"
-              /> */}
+              
             </div>
 
             <div className="mb-4 m-2">
@@ -363,13 +341,7 @@ const App = () => {
                 Heure :
               </label>
               <span className=" border-gray-300 m-auto"> <strong>{de_heure}</strong> </span>
-              {/* <input
-                type="text"
-                id="id_heure_2"
-                name="id_heure_2"
-                value={de_heure}
-                className="border border-gray-300 m-auto rounded"
-              /> */}
+             
             </div>
             <div className="mb-4  m-2">
               <img src={update_time} alt='print' className='w-9' onClick={handleAdd2} />
@@ -387,20 +359,8 @@ const App = () => {
         <div className='btn w-auto self-center flex m-2' onClick={saveAsJson}>
           <h1 className='text-center'>save</h1>
         </div>
-        <div>
-          {/* <button onClick={ShowData} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            go To
-          </button>
-          {showObjectList && <ObjectList />} */}
-
-          <nav>
-            <ul>
-              <li>
-                <Link to="/fetchData">Fetch</Link>
-              </li>
-            </ul>
-          </nav>
-
+        <div className='btn w-auto self-center flex m-2'>
+          <Link className='text-center' to="/fetchData">Fetch</Link>
         </div>
       </div>
     </>

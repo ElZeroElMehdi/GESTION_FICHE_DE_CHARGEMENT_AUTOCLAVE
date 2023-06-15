@@ -1,9 +1,10 @@
+import { log } from 'logrocket';
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const ObjectList = () => {
-  const history = useHistory();
+  // const history = useHistory();
   const [objects, setObjects] = useState([]);
 
   useEffect(() => {
@@ -24,7 +25,9 @@ const ObjectList = () => {
   //   const encodedObject = encodeURIComponent(JSON.stringify(object));
   //   history.push(`/destination?object=${encodedObject}`);
   // };
-
+  console.log('====================================');
+  console.log(objects);
+  console.log('====================================');
   return (
     <div>
       <ul>
@@ -41,7 +44,7 @@ const ObjectList = () => {
                 pathname: '/DestinationPage',
                 state: { object: object },
               }}
-              target="_blank"
+              // target="_blank"
             >
               Open Destination Page
             </Link>
