@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Table from './table';
+import print from '../print.png';
+import "../App.css"
 
 // const handleUpdate = () => {
 //   const objectToUpdate = {
@@ -35,8 +37,22 @@ import Table from './table';
 
 const DestinationPage = () => {
   const location = useLocation();
+  const [isButtonVisible, setIsButtonVisible] = useState(true);
   const { object } = location.state;
-  console.log(object)
+  const handleButtonClick = () => {
+    setIsButtonVisible(false);
+
+    // Function to be called after printing finishes
+    const afterPrint = () => {
+      setIsButtonVisible(true);
+    };
+
+    // Attach event listener for afterprint
+    window.onafterprint = afterPrint;
+
+    // Trigger the print dialog
+    window.print();
+  };
 
 
   return (
@@ -131,34 +147,31 @@ const DestinationPage = () => {
             </strong>
           </div>
           <div className="mb-4 m-2">
-              <label htmlFor="id_date_2" className="mr-2">
-                Date :
-              </label>
-              <span className=" border-gray-300 m-auto"> <strong>{new Date().toLocaleDateString()}</strong> </span>
-              
-            </div>
+            <label htmlFor="id_date_2" className="mr-2">
+              Date :
+            </label>
+            <span className=" border-gray-300 m-auto"> <strong>{new Date().toLocaleDateString()}</strong> </span>
 
-            <div className="mb-4 m-2">
-              <label htmlFor="id_heure_2" className="mr-2">
-                Heure :
-              </label>
-              <span className=" border-gray-300 m-auto"> <strong>{new Date().toLocaleTimeString() }</strong> </span>
-             
-            </div>
-            {/* <div className="mb-4  m-2">
-              <img src={update_time} alt='print' className='w-9' onClick={handleAdd2} />
-            </div> */}
+          </div>
+
+          <div className="mb-4 m-2">
+            <label htmlFor="id_heure_2" className="mr-2">
+              Heure :
+            </label>
+            <span className=" border-gray-300 m-auto"> <strong>{new Date().toLocaleTimeString()}</strong> </span>
+
+          </div>
         </div>
       </div>
+      {isButtonVisible && (
+        <div className='flex justify-center'>
+          <div className='btn w-auto self-center flex m-2'>
+            <img src={print} alt='printer logo' className='w-10 h-10' />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default DestinationPage;
-
-/*
-const handleAdd2 = () => {
-    setInput5(new Date().toLocaleDateString());
-    setInput6(new Date().toLocaleTimeString());
-  };
- */

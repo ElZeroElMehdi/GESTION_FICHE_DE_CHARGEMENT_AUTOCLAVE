@@ -25,7 +25,9 @@ db.serialize(() => {
     matricule_1 TEXT,
     _de_date TEXT,
     _de_heure TEXT,
-    objectTable TEXT
+    objectTable TEXT,
+    de_date TEXT,
+    de_heure TEXT
   )`);
 });
 
@@ -34,8 +36,8 @@ app.post('/api/objects', (req, res) => {
   const object = req.body;
 
   db.run(
-    `INSERT INTO objects (semaine, autoclave, n_cycle, n_courbe, matricule_1, _de_date, _de_heure, objectTable)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO objects (semaine, autoclave, n_cycle, n_courbe, matricule_1, _de_date, _de_heure, objectTable, de_date, de_heure)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
     [
       object.semaine,
       object.autoclave,
@@ -44,7 +46,9 @@ app.post('/api/objects', (req, res) => {
       object.matricule_1,
       object._de_date,
       object._de_heure,
-      JSON.stringify(object.table)
+      JSON.stringify(object.table),
+      object.de_date,
+      object.de_heure
     ],
     function (err) {
       if (err) {
@@ -79,6 +83,39 @@ app.get('/api/objects', (req, res) => {
   });
 });
 
+app.put('/api/objects', (req, res) => {
+  const object = req.body;
+  db.run(
+    `UPDATE objects
+    SET de_date = ?,
+        de_heure = ?
+    WHERE semaine = ? AND matricule_1 = ?`,
+    [
+      object.de_date,
+      object.de_heure,
+      object.semaine,
+      object.matricule_1
+    ],
+    function (err) {
+      if (err) {
+        console.error('Error updating object in the database:', err);
+        res.status(500).json({ error: 'Internal server error' });
+      } else {
+        console.log('Object updated in the database');
+        res.status(200).json({ message: 'Object updated successfully' });
+      }
+    }
+  );
+});
+
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+
+
+
+
+
+
