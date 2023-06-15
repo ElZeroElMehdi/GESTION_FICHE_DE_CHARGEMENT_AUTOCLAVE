@@ -21,32 +21,14 @@ const ObjectList = () => {
     }
   };
 
-  // const sendObj = (object) => {
-  //   const encodedObject = encodeURIComponent(JSON.stringify(object));
-  //   history.push(`/destination?object=${encodedObject}`);
-  // };
-  console.log('====================================');
-  console.log(objects);
-  console.log('====================================');
   return (
-    <div>
+    <div className='m-10'>
       <ul>
         {objects.map((object) => (
-          <li key={object.id} className="mb-2">
-            <div>
-              <strong>Semaine:</strong> {object.semaine}
-            </div>
-            <div>
-              <strong>Matricule 1:</strong> {object.matricule_1}
-            </div>
-            <Link
-              to={{
-                pathname: '/DestinationPage',
-                state: { object: object },
-              }}
-              // target="_blank"
-            >
-              Open Destination Page
+          <li key={object.id} className="flex items-center bg-gray-200 py-4 px-6">
+            <h2 className="text-lg text-gray-800 mr-auto"><strong>Semaine:</strong> {object.semaine}   ,   <strong>Matricule 1:</strong> {object.matricule_1} ... </h2>
+            <Link className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded" to={{ pathname: '/DestinationPage', state: { object: object }, }}  >
+             See Details
             </Link>
           </li>
         ))}

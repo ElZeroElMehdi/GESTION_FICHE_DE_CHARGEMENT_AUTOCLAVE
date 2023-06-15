@@ -1,22 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import "./App.css"
 import Table from './components/table';
-import print from './print.png';
 import update_time from './time_update.png';
 import ParentComponent from './components/parentModal';
 import axios from 'axios';
-// import ObjectList from './components/fetchData';
 import { Link } from 'react-router-dom';
 
 const App = () => {
-
-
-  const [showObjectList, setShowObjectList] = useState(false);
-
-  const ShowData = () => {
-    setShowObjectList(true);
-  };
-
   const sendObjectToBackend = async (object) => {
     try {
       const response = await axios.post('http://localhost:3001/api/objects', object);
@@ -37,36 +27,6 @@ const App = () => {
       console.error('Error sending object:', error.message);
     }
   };
-  //still need it
-  // const fetchObjectsFromBackend = async () => {
-  //   try {
-  //     const response = await axios.get('/api/objects');
-
-  //     if (response.status === 200) {
-  //       const objects = response.data;
-  //       console.log('Objects retrieved successfully:', objects);
-  //       // return objects;
-  //       // Handle the retrieved objects here
-  //     } else {
-  //       console.log('Error retrieving objects:', response.data.error);
-  //       // Handle any error logic here
-  //     }
-  //   } catch (error) {
-  //     console.error('Error retrieving objects:', error.message);
-  //     // Handle any error logic here
-  //   }
-  // };
-
-
-
-
-
-
-
-
-
-
-
 
   var FuncWeekNumber = () => {
     var currentDate = new Date();
@@ -129,6 +89,10 @@ const App = () => {
   useEffect(() => { }, [selectedOptions2]);
 
   const saveAsJson = () => {
+    if (autoclave === '' || Cycle === '' || Courbe === '') {
+      alert('Please fill all the fields');
+      return;
+    }
     const data = {
       semaine: FuncWeekNumber(),
       autoclave: autoclave,
@@ -314,7 +278,7 @@ const App = () => {
           </div>
         </div>
         {/* ***************** */}
-        <div className='border border-black w-full m-2'>
+        {/* <div className='border border-black w-full m-2'>
           <h1 className=' m-2 bg-gray-100 w-full justify-center text-center' >DECHARGEMENT</h1>
           <div className='flex justify-center'>
             <div className="mb-4 m-2">
@@ -347,15 +311,10 @@ const App = () => {
               <img src={update_time} alt='print' className='w-9' onClick={handleAdd2} />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
-      <div className='flex justify-center'>
-        <div className='btn w-auto self-center flex m-2' onClick={() => {
 
-          window.print();
-        }}>
-          <img src={print} alt="printer logo" className='w-10 h-10' />
-        </div>
+      <div className='flex justify-center'>
         <div className='btn w-auto self-center flex m-2' onClick={saveAsJson}>
           <h1 className='text-center'>save</h1>
         </div>
