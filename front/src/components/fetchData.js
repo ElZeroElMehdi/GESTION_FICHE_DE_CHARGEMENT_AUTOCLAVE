@@ -20,7 +20,9 @@ const ObjectList = () => {
       console.error('Error fetching objects:', error);
     }
   };
-
+  console.log('====================================');
+  console.log(objects);
+  console.log('====================================');
   return (
     <div className='m-10'>
       <ul>

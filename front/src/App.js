@@ -37,7 +37,7 @@ const App = () => {
     return weekNumber;
   }
 
-  const [inputValues22, SetinputValues22] = useState('');
+  // const [inputValues22, SetinputValues22] = useState('');
   const [selectedOptions, SetselectedOptions] = useState([]);
   const [selectedOptions2, SetselectedOptions2] = useState([]);
 
@@ -102,7 +102,6 @@ const App = () => {
       _de_date: de_date,
       _de_heure: de_heure,
       table: values,
-      de_date,
     };
     sendObjectToBackend(data);
     // fetchObjectsFromBackend();
@@ -187,27 +186,24 @@ const App = () => {
                 className="border border-gray-300 m-auto rounded"
               />
             </div>
-            <div className="mb-4 m-3">
-              <label htmlFor="id_date_1" className="mr-2">
+            <div className="mb-4 m-2">
+              <label htmlFor="id_date_2" className="mr-2">
                 Date :
               </label>
-              <span className=" border-gray-300 m-auto"> <strong>{inputValues22.Date}</strong> </span>
+              <span className=" border-gray-300 m-auto"> <strong>{de_date}</strong> </span>
+              
             </div>
 
-            <div className="mb-4 m-3">
-              <label htmlFor="id_heure_1" className="mr-2">
+            <div className="mb-4 m-2">
+              <label htmlFor="id_heure_2" className="mr-2">
                 Heure :
               </label>
-              <span className=" border-gray-300 m-auto"> <strong>{inputValues22.Heure}</strong> </span>
+              <span className=" border-gray-300 m-auto"> <strong>{de_heure}</strong> </span>
+             
             </div>
+
             <div className="mb-4  m-2">
-              <img src={update_time} alt='print' className='w-9' onClick={() => {
-                SetinputValues22({
-                  ...inputValues22,
-                  Date: new Date().toLocaleDateString(),
-                  Heure: new Date().toLocaleTimeString(),
-                });
-              }} />
+              <img src={update_time} alt='print' className='w-9' onClick={handleAdd2} />
             </div>
 
           </div>
@@ -292,24 +288,8 @@ const App = () => {
                 className="border border-gray-300 m-auto rounded"
               />
             </div>
-            <div className="mb-4 m-2">
-              <label htmlFor="id_date_2" className="mr-2">
-                Date :
-              </label>
-              <span className=" border-gray-300 m-auto"> <strong>{de_date}</strong> </span>
-              
-            </div>
+            
 
-            <div className="mb-4 m-2">
-              <label htmlFor="id_heure_2" className="mr-2">
-                Heure :
-              </label>
-              <span className=" border-gray-300 m-auto"> <strong>{de_heure}</strong> </span>
-             
-            </div>
-            <div className="mb-4  m-2">
-              <img src={update_time} alt='print' className='w-9' onClick={handleAdd2} />
-            </div>
           </div>
         </div> */}
       </div>
