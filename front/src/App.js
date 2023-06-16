@@ -19,6 +19,8 @@ const App = () => {
           const objects = checkResponse.data;
           const exists = objects.some((obj) => obj.id === response.data.id);
           console.log('Data still exists:', exists);
+          alert('Data saved successfully');
+          document.location.reload();
         }
       } else {
         console.log('Error sending object:', response.data.error);
@@ -38,6 +40,7 @@ const App = () => {
   }
 
   // const [inputValues22, SetinputValues22] = useState('');
+  
   const [selectedOptions, SetselectedOptions] = useState([]);
   const [selectedOptions2, SetselectedOptions2] = useState([]);
 
@@ -273,25 +276,6 @@ const App = () => {
             </div>
           </div>
         </div>
-        {/* ***************** */}
-        {/* <div className='border border-black w-full m-2'>
-          <h1 className=' m-2 bg-gray-100 w-full justify-center text-center' >DECHARGEMENT</h1>
-          <div className='flex justify-center'>
-            <div className="mb-4 m-2">
-              <label htmlFor="id_matricule_2" className="mr-2">
-                Matricule(s) opérateur(s)
-              </label>
-              <input
-                type="text"
-                id="id_matricule_2"
-                name="id_matricule_2"
-                className="border border-gray-300 m-auto rounded"
-              />
-            </div>
-            
-
-          </div>
-        </div> */}
       </div>
 
       <div className='flex justify-center'>
