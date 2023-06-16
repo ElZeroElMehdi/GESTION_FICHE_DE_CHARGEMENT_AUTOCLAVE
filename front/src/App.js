@@ -5,6 +5,7 @@ import update_time from './time_update.png';
 import ParentComponent from './components/parentModal';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import logo from './Aircelle_-_logo_2010.png'
 
 const App = () => {
   const sendObjectToBackend = async (object) => {
@@ -113,13 +114,15 @@ const App = () => {
 
   return (
     <>
-      <div className="p-4">
+      <div className='m-5'>
         <div className="flex">
-          <div className="flex-auto bg-gray-500 justify-center text-center border-s-2"> - </div>
-          <div className="flex-auto bg-gray-500 justify-center text-center border-s-2">
-            <h1 className="text-2xl font-bold m-auto w-max justify-center text-center">FICHE DE CHARGEMENT AUTOCLAVE</h1>
+          <div className="flex-auto justify-center text-center border-s-2"> 
+            <img src={logo} className='w-60 self-center m-auto'/>
           </div>
-          <div className="flex-auto bg-gray-500 justify-center text-center border-s-2"> -</div>
+          <div className="flex-auto bg-gray-500 justify-center text-center border-s-2">
+            <h1 className="text-2xl font-bold m-auto w-max justify-center text-center p-5 self-center">FICHE DE CHARGEMENT AUTOCLAVE</h1>
+          </div>
+          <div className="flex-auto  justify-center text-center border-s-2 p-5 self-center"> - </div>
         </div>
         <div className='flex justify-center m-2'>
           <div className='flex'>
