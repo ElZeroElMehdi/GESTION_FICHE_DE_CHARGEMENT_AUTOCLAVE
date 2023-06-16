@@ -166,7 +166,7 @@ const DestinationPage = () => {
       {isButtonVisible && (
         <div className='flex justify-center'>
           <div className='btn w-auto self-center flex m-2'>
-            <img src={print} alt='printer logo' className='w-10 h-10' />
+            <img src={print} alt='printer logo' className='w-10 h-10' onClick={handleButtonClick} />
           </div>
         </div>
       )}
