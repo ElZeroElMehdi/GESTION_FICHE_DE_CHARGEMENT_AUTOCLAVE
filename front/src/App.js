@@ -117,7 +117,7 @@ const App = () => {
       <div className='m-5'>
         <div className="flex">
           <div className="flex-auto justify-center text-center border-s-2"> 
-            <img src={logo} className='w-60 self-center m-auto'/>
+            <img alt='logo' src={logo} className='w-60 self-center m-auto'/>
           </div>
           <div className="flex-auto bg-gray-500 justify-center text-center border-s-2">
             <h1 className="text-2xl font-bold m-auto w-max justify-center text-center p-5 self-center">FICHE DE CHARGEMENT AUTOCLAVE</h1>
